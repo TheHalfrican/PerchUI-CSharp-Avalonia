@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using Avalonia.ReactiveUI;
 
 namespace Perch
 {
@@ -16,7 +17,12 @@ namespace Perch
         // Avalonia configuration, don't remove; also used by the visual designer.
         public static AppBuilder BuildAvaloniaApp()
         {
-            return AppBuilder.Configure<App>().UsePlatformDetect().WithInterFont().LogToTrace();
+            return AppBuilder
+                .Configure<App>()
+                .UsePlatformDetect()
+                .WithInterFont()
+                .UseReactiveUI()
+                .LogToTrace();
         }
     }
 }

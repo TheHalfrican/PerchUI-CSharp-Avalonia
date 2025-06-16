@@ -1,5 +1,7 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Perch.Views;
 
 namespace Perch
 {
@@ -10,12 +12,27 @@ namespace Perch
             Title = "Perch";
             Width = 800;
             Height = 600;
+            // Settings button
+            var settingsBtn = new Button { Content = "Settings…" };
+            settingsBtn.Click += async (sender, e) =>
+            {
+                var dlg = new SettingsDialogView();
+                await dlg.ShowDialog(this);
+            };
 
-            Content = new StackPanel
+            // Main panel with Settings button and welcome text
+            var mainPanel = new StackPanel
             {
                 Orientation = Orientation.Vertical,
-                Children = { new TextBlock { Text = "Welcome to Perch!" } },
+                Spacing = 10,
+                Children =
+                {
+                    settingsBtn,
+                    new TextBlock { Text = "Welcome to Perch!" },
+                },
             };
+
+            Content = mainPanel;
         }
     }
 }
